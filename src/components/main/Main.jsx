@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useState } from 'react';
 import emoObject from '../../content';
 import InnerItem from '../InnerItem/InnerItem';
@@ -8,7 +8,7 @@ import style from './main.module.css'
 function Main(props) {
     const [emoValue, setEmoValue] = useState('')
     const [popupValue, setPopupValue] = useState({})
-    
+    const [tooltipValue, setTooltipValue] = useState({x: 0, y: 0, open: false})
     const mouseHandler = (e) => {
 
         let id = e.target.dataset.id
@@ -47,12 +47,16 @@ function Main(props) {
         setEmoValue(emo.innerText)
         setPopupValue(object)
     }
+    const circleHandler = (e) => {
+        let [x,y] = [e.nativeEvent.offsetX, e.nativeEvent.offsetY]
+        setTooltipValue({...tooltipValue, x: x, y: y, open: true})
+    }
     return (
         <main className={style.main}>
             <section className={style.contentBlock}>
                     <ul className={style.emoList}>
                         <li className={style.emoItem}>
-                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.purpleLink].join(' ')}>Фиолетовый</h2>
+                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.purple].join(' ')}>Фиолетовый</h2>
                             <ul className={style.innerList}>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Отвращение</InnerItem>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Неудовольствие</InnerItem>
@@ -61,7 +65,7 @@ function Main(props) {
                             </ul>
                         </li>
                         <li className={style.emoItem}>
-                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.blueLink].join(' ')}>Голубой</h2>
+                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.blue].join(' ')}>Голубой</h2>
                             <ul className={style.innerList}>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Изумление</InnerItem>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Удивление</InnerItem>
@@ -74,7 +78,7 @@ function Main(props) {
                             </ul>
                         </li>
                         <li className={style.emoItem}>
-                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.greenLink].join(' ')}>Зелёный</h2>
+                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.green].join(' ')}>Зелёный</h2>
                             <ul className={style.innerList}>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Любовь</InnerItem>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Восхищение</InnerItem>
@@ -173,9 +177,35 @@ function Main(props) {
                         </svg>
                     </div>
                 </div>
+                <div className={style.mobileCircleWrapper}>
+                    <h2 style={{textAlign: 'center'}}>Твое колесо эмоций</h2>
+                    <p style={{width: '80%', padding: '1em', textAlign: 'center', margin: '0 auto'}}>
+                        Помоги себе обнаружить свою эмоцию и нажми на нее, чтобы прочитать подробнее
+                    </p>
+                    <div className={style.circle}>
+                        <svg onMouseMove={circleHandler} className={style.chart} width="300" height="300">
+                            <circle id="1" data-color="green" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle id="2" data-color="light-green" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle id="3" data-color="blue" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle id="4" data-color="light-blue" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle id="5" data-color="purple" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle id="6" data-color="red" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle id="7" data-color="orange" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle id="8" data-color="yellow" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
+                            <circle  className={style.center} r="38" cx="50%" cy="50%"></circle> 
+                            <foreignObject>
+                                <div style={{top: tooltipValue.y, left: tooltipValue.x}} className={tooltipValue.open ? style.tooltipOpen : style.tooltip}>
+                                    <h2>color</h2>
+                                    <div>list</div>
+                                </div>
+                            </foreignObject>
+                        </svg>
+                        
+                    </div>
+                </div>
                 <ul className={[style.emoList, style.secondList].join(' ')}>
                 <li className={style.emoItem}>
-                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.redLink].join(' ')}>Красный</h2>
+                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.red].join(' ')}>Красный</h2>
                             <ul className={style.innerList}>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Гнев</InnerItem>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Злость</InnerItem>
@@ -184,7 +214,7 @@ function Main(props) {
                             </ul>
                         </li>
                         <li className={style.emoItem}>
-                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.orangeLink].join(' ')}>Оранжевый</h2>
+                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.orange].join(' ')}>Оранжевый</h2>
                             <ul className={style.innerList}>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Настороженность</InnerItem>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Ожидание</InnerItem>
@@ -192,7 +222,7 @@ function Main(props) {
                             </ul>
                         </li>
                         <li className={style.emoItem}>
-                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.yellowLink].join(' ')}>Жёлтый</h2>
+                            <h2 onClick={accordionHandler} className={[style.emoHeading, style.yellow].join(' ')}>Жёлтый</h2>
                             <ul className={style.innerList}>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Оптимизм</InnerItem>
                                 <InnerItem popupOpen={popupOpen} className={style.innerItem}>Восторг</InnerItem>
@@ -210,7 +240,7 @@ function Main(props) {
                         <p><span style={{color: 'purple'}}>Триггеры: </span>{popupValue.trigger}</p>
                         <p><span style={{color: 'purple'}}>Мысли: </span>{popupValue.thoughts}</p>
                         <p><span style={{color: 'purple'}}>Симптомы: </span>{popupValue.symptoms}</p>
-                        <p>Я принимаю это чувство, потому что разрешаюю себе испытывать любые эмоции.</p>
+                        <p>Я принимаю это чувство, потому что разрешаю себе испытывать любые эмоции.</p>
                     </div>
                 </div>
             </div>
