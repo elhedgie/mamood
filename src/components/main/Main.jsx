@@ -192,13 +192,7 @@ function Main(props) {
                             <circle id="6" data-color="red" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
                             <circle id="7" data-color="orange" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
                             <circle id="8" data-color="yellow" className={style.unit} r="75px" cx="50%" cy="50%"></circle>
-                            <circle  className={style.center} r="38" cx="50%" cy="50%"></circle> 
-                            <foreignObject>
-                                <div style={{top: tooltipValue.y, left: tooltipValue.x}} className={tooltipValue.open ? style.tooltipOpen : style.tooltip}>
-                                    <h2>color</h2>
-                                    <div>list</div>
-                                </div>
-                            </foreignObject>
+                            <circle  className={style.center} r="38" cx="50%" cy="50%"></circle>
                         </svg>
                         
                     </div>
