@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/mamood/static/css/main.5adc0477.css",
-    "main.js": "/mamood/static/js/main.da942fff.js",
+    "main.js": "/mamood/static/js/main.112d89f7.js",
     "static/media/logo.svg": "/mamood/static/media/logo.fe96fd36018e6b9dea724f7ef7273fcd.svg",
     "index.html": "/mamood/index.html",
     "main.5adc0477.css.map": "/mamood/static/css/main.5adc0477.css.map",
-    "main.da942fff.js.map": "/mamood/static/js/main.da942fff.js.map"
+    "main.112d89f7.js.map": "/mamood/static/js/main.112d89f7.js.map"
   },
   "entrypoints": [
     "static/css/main.5adc0477.css",
-    "static/js/main.da942fff.js"
+    "static/js/main.112d89f7.js"
   ]
 }
