@@ -15,11 +15,11 @@ const BreathBlock = observer(() => {
   let pausedOnce = false;
   let req = useRef(null);
   let int = useRef(null);
-  let rChange = useRef(1);
+  let rChange = useRef(null);
   const breathIn = () => {
-    if (canvasState === 40) {
+    if (canvasState === 40 || canvasState < 40) {
       setTextState("ВДОХ");
-      rChange.current = 1 / (breath.inhale / 2);
+      rChange.current = 1 / (breath.inhale / 1.5);
     }
     if (canvasState > 120 && !pausedOnce) {
       if (breath.pause) {
@@ -31,7 +31,7 @@ const BreathBlock = observer(() => {
           } else {
             setTextState("ВЫДОХ");
             clearInterval(int.current);
-            rChange.current = -1 / (breath.exhale / 2);
+            rChange.current = -1 / (breath.exhale / 1.5);
             setCanvasState((canvasState += rChange.current));
             req.current = requestAnimationFrame(breathIn);
             pausedOnce = true;
@@ -48,7 +48,9 @@ const BreathBlock = observer(() => {
 
   const stopBreathingHandler = () => {
     cancelAnimationFrame(req.current);
+    setTextState("СТОП");
     breath.stop();
+    setCanvasState(40);
   };
 
   const drawCircle = (x, y, r, color, colorTwo, text = null) => {
@@ -70,7 +72,11 @@ const BreathBlock = observer(() => {
 
   useEffect(() => {
     if (breath.started) {
-      req.current = requestAnimationFrame(breathIn);
+      setTimeout(() => {
+        req.current = requestAnimationFrame(breathIn);
+      }, 2000);
+      setTextState("ГОТОВЫ?");
+      window.scrollTo(0, document.documentElement.scrollHeight);
     }
   }, [breath.started]);
   useEffect(() => {
@@ -93,7 +99,7 @@ const BreathBlock = observer(() => {
         <BreathButton
           className={style.btn}
           type="button"
-          text="Стоп"
+          text="СТОП"
           onClick={stopBreathingHandler}
         />
       </div>

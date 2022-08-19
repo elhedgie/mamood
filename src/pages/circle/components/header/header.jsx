@@ -7,7 +7,9 @@ function Header() {
   return (
     <header className={style.header}>
       <nav className={style.nav}>
-        <img className={style.logo} src={logo} alt="logo" />
+        <Link to="/">
+          <img className={style.logo} src={logo} alt="logo" />
+        </Link>
         <div className={style.breathingBlock}>
           <Link to="/breathing" className={style.breathingLink} href="#">
             Дыхание

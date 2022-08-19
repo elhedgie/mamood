@@ -40,6 +40,8 @@
   width: 200px;
   min-height: 40px;
   cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
 }
 @media (min-width: 1288px) {
   .optionBlock {

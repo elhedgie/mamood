@@ -17,7 +17,7 @@ const OptionItem = observer((props) => {
           onClick={() => Breath.start(props.inhale, props.exhale, props.pause)}
           className={style.btn}
         >
-          Выбрать
+          ВЫБРАТЬ
         </button>
       </div>
     </div>
