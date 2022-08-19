@@ -21,7 +21,7 @@ const BreathBlock = observer(() => {
       setTextState("ВДОХ");
       rChange.current = 1 / (breath.inhale / 2);
     }
-    if (canvasState > 120 && !i) {
+    if (canvasState > 120 && !pausedOnce) {
       if (breath.pause) {
         int.current = setInterval(() => {
           if (pause !== breath.pause - 1) {
