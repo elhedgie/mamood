@@ -1,0 +1,50 @@
+.optionBlock {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: rgba(240, 242, 246, 0.4);
+  padding: 1em;
+  cursor: pointer;
+}
+.heading {
+  margin: 0;
+  text-transform: uppercase;
+  color: rgb(29, 39, 79);
+}
+.description {
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 1em 0;
+}
+.closed {
+  display: none;
+}
+.checkbox {
+  align-self: center;
+  display: flex;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: white;
+}
+.btn {
+  margin: 0 auto;
+  font-family: inherit;
+  color: white;
+  background-color: rgba(67, 163, 195, 0.714);
+  border: none;
+  border-radius: 10px;
+  width: 200px;
+  min-height: 40px;
+  cursor: pointer;
+}
+@media (min-width: 1288px) {
+  .optionBlock {
+    width: 30%;
+    padding: 1em;
+    text-align: center;
+  }
+}
